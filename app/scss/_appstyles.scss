@@ -1,0 +1,204 @@
+/* all app scss styles here */
+
+@import "compass/css3";
+@import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/utilities";
+
+
+
+@media #{$small-up} { // mobile screens
+
+	body{
+		font: 14px $body-font;
+		color: $text-color;
+		height: 100%;
+	}
+	h1{
+		font: 3em/1em $header-font;
+		color: $text-color;
+		margin: 1em 0;
+	}
+	h2,h3{
+		font: 1em/0.2em $italics;
+		margin: 1em 0;
+		color: lighten($text-color, 10%);
+	}
+
+	img{
+		max-width: 100%;
+		margin: 0 auto;
+	}
+	header{
+		background: $background;
+		background-size: cover;
+		width: 100%;
+		min-height: 60px;
+		border-bottom: 0.2em solid $background;
+		a:hover, a:active{
+			color: darken($white, 50%);
+		}
+		h1{
+			font-size: 1.5em;
+			color: $white;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+	#tab-container{
+		top: 50px;
+	}
+
+	.tabs{
+		margin-top: 0;
+		text-align: center;
+		li{
+			font: 1.5em/1em $body-font;
+			border-bottom: 0.1em solid $background;
+			width: 100%;
+		}
+	}
+
+	p{
+		font: 1.5em/1.5em $body-font;
+	}
+
+	a{
+		color: $white;
+		font-family: $body-font;
+	}
+
+	.pull-quote{
+		font: 2.5em/1.5em $italics;
+		color: lighten($background, 50%);
+		text-align: center;
+	}
+
+	#One{
+		margin: 1em 0;
+	}
+	
+	.button{
+		padding: $button-lrg;
+		background-color: $button-color;
+		width: 100%;
+		border: 1px solid $white;
+		float: right;
+		&:hover, &:active{
+			background-color: lighten($background, 25%);
+		}
+		&:focus{
+			background-color: darken($background, 50%);
+		}
+	}
+	
+	.tab-toggle{
+		display: block;
+		position: absolute;
+		width: 50px;
+		z-index: 9000;
+		margin: -60px 0 0 5px;
+	}
+
+	.open{
+		display: block;
+		@include transition-property(display);
+		@include transition-duration(0.5s);
+		@include transition-timing-function(ease-in);
+	}
+
+	.close{
+		display: none;
+		@include transition-property(display);
+		@include transition-duration(0.5s);
+		@include transition-timing-function(ease-in);
+	}
+	// collapsing animation
+	#tab-container:target{
+		> .open{
+			display: none;
+		}
+		> .close{
+			display: block;
+		}
+	}
+
+	#tab-container > ul{
+		height: 0;
+		overflow: hidden;
+		@include transition-property(height);
+		@include transition-duration(1s);
+		@include transition-timing-function(ease-out);
+	}
+
+	#tab-container:target > ul{
+		height: 280px;
+	}
+	
+	footer{
+		background-color: darken($background, 50%);
+		min-height: 100px;
+		padding: 1em 0;
+	}
+	.social-media-list{
+		@include inline-list;
+		width: 100%;
+		a {
+			margin-right: 0.5em;
+			&:last-child{
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+@media #{$medium-up} { // desktop screens
+	header{
+		background: url('../images/header-image.jpg') 50% 0 no-repeat $background;
+		background-size: cover;
+		max-height: 290px;
+		h1{
+			font-size: 400%;
+			color: $white;
+			text-align: left;
+		}
+	}
+	img{
+		margin: auto;
+		max-width: 100%;
+	}
+	#tab-container > ul{
+		height: 60px;
+	}
+	.tab-toggle{
+		display: none;
+	}
+	.tabs{
+		float: right;
+		text-align: left;
+		li{
+			display: inline-block;
+			font: 1.5em/1em $body-font;
+			border-bottom: 0em;
+			width: auto;
+			padding: 0 1px;
+		}
+	}
+	.button{
+		background-color: $background;
+		width: auto;
+		padding: $button-med;
+		a{
+			color: $white;
+			font-family: $body-font;
+		}
+	}
+	.social-media-list{
+		.button{
+			width: 50px;
+		}
+	}
+	
+}
